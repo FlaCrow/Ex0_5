@@ -8,7 +8,7 @@ bool encrypt(string filename, int key)
 	string filetext, buf;
 	ifstream infile(filename);
 
-// Читаем файл
+// Р§РёС‚Р°РµРј С„Р°Р№Р»
 	if (!infile) return 0;
 	while (!infile.eof()) {
 		getline(infile, buf);
@@ -17,19 +17,19 @@ bool encrypt(string filename, int key)
 
 	if (filetext.length() / 2 < key) return 0;
 
-// Инициализируем массив
+// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РјР°СЃСЃРёРІ
 	char* matr = new char[key * filetext.length()]();
 	bool dir = 0;
 	int row = 0, col = 0;
 
-// Записываем содержимое файла в массив, меняя направление при достижении 0 или key-1
+// Р—Р°РїРёСЃС‹РІР°РµРј СЃРѕРґРµСЂР¶РёРјРѕРµ С„Р°Р№Р»Р° РІ РјР°СЃСЃРёРІ, РјРµРЅСЏСЏ РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРё РґРѕСЃС‚РёР¶РµРЅРёРё 0 РёР»Рё key-1
 	for (int i = 0; i < filetext.length(); i++) {
 		if (row == 0 || row == key - 1) dir = !dir;
 		matr[row * filetext.length() + col++] = filetext[i];
 		dir ? row++ : row--;
 	}
 
-//Записываем строку, игнорируя \0.
+//Р—Р°РїРёСЃС‹РІР°РµРј СЃС‚СЂРѕРєСѓ, РёРіРЅРѕСЂРёСЂСѓСЏ \0.
 	string result;
 	for (int i = 0; i < key; i++)
 		for (int j = 0; j < filetext.length(); j++)
@@ -45,7 +45,7 @@ bool encrypt(string filename, int key)
 int main(int argc, char* argv[])
 {
 	int key = 3;
-	//Для проверки работы принимаем путь к файлу как аргумент командной строки
+	//Р”Р»СЏ РїСЂРѕРІРµСЂРєРё СЂР°Р±РѕС‚С‹ РїСЂРёРЅРёРјР°РµРј РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ РєР°Рє Р°СЂРіСѓРјРµРЅС‚ РєРѕРјР°РЅРґРЅРѕР№ СЃС‚СЂРѕРєРё
 	if (argc == 1)
 	{
 		cout << "Please write command line agruments" << endl;
