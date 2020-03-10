@@ -49,6 +49,7 @@ bool encrypt(string filename, int key)
 	outfile << result;
 	outfile.close();
 	infile.close();
+	delete[] matr;
 	return 1;
 }
 
